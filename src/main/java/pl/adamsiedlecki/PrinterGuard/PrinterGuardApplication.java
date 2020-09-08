@@ -7,11 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.util.concurrent.atomic.AtomicReference;
 
 @SpringBootApplication
 public class PrinterGuardApplication {
@@ -28,7 +24,7 @@ public class PrinterGuardApplication {
 		int camPort = Integer.parseInt(env.getProperty("camera.port","8080"));
 
 		new Thread(()->{
-			WebcamStreamer webcamStreamer = new WebcamStreamer(camPort, w, 25, false);
+			WebcamStreamer webcamStreamer = new WebcamStreamer(8080, w, 25, false);
 			webcamStreamer.start();
 		}).start();
 
