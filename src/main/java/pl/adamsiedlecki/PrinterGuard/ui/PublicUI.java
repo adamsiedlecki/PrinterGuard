@@ -3,7 +3,6 @@ package pl.adamsiedlecki.PrinterGuard.ui;
 
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.server.ExternalResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.spring.annotation.SpringUI;
@@ -13,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
 import pl.adamsiedlecki.PrinterGuard.hardware.RaspberryGPIO;
-import pl.adamsiedlecki.PrinterGuard.http.InfoGetter;
-
-import java.io.File;
+import pl.adamsiedlecki.PrinterGuard.ui.components.CameraBrowserFrame;
 
 @SpringUI(path = "/")
 @StyleSheet({"https://fonts.googleapis.com/css?family=Ubuntu&display=swap"})
@@ -26,11 +23,12 @@ public class PublicUI extends UI {
     private final int num = 0;
     private final Environment env;
     private final RaspberryGPIO raspberryGPIO = new RaspberryGPIO();
+    private final CameraBrowserFrame cameraBrowserFrame;
 
     @Autowired
-    public PublicUI(Environment env) {
-
+    public PublicUI(Environment env, CameraBrowserFrame cameraBrowserFrame) {
         this.env = env;
+        this.cameraBrowserFrame = cameraBrowserFrame;
     }
 
     @Override
@@ -53,39 +51,20 @@ public class PublicUI extends UI {
     }
 
     private void initButtons() {
-        File lastFile = new File("frames/img0.jpg");
+        Panel printerOnOffPanel = getOnOffPanel("Printer ON/OFF (GPIO 14)", 14);
+        Panel lightOnOffPanel = getOnOffPanel("Light ON/OFF (GPIO 15)", 15);
 
-        InfoGetter infoGetter = new InfoGetter();
-        String externalAddress = infoGetter.getExternalIpAddress();
-
-        String address = "http://" + externalAddress + ":" + env.getProperty("camera.port");
-        BrowserFrame browserFrame = new BrowserFrame();
-        browserFrame.setSizeUndefined();
-        browserFrame.setAlternateText(env.getProperty("camera.alternative.text"));
-        browserFrame.setWidth(Float.parseFloat(env.getProperty("camera.width", "480")), Unit.PIXELS);
-        browserFrame.setHeight(Float.parseFloat(env.getProperty("camera.height", "400")), Unit.PIXELS);
-        browserFrame.setSource(new ExternalResource(address));
+        HorizontalLayout panelsLayout = new HorizontalLayout(cameraBrowserFrame, printerOnOffPanel, lightOnOffPanel);
+        panelsLayout.setSpacing(true);
+        panelsLayout.setSizeUndefined();
 
         Panel videoPanel = new Panel();
         videoPanel.setSizeUndefined();
         videoPanel.setWidth(1000, Unit.PIXELS);
         videoPanel.setHeight(1000, Unit.PERCENTAGE);
-
-
-        Panel printerOnOffPanel = getOnOffPanel("Printer ON/OFF (GPIO 14)", 14);
-        Panel lightOnOffPanel = getOnOffPanel("Light ON/OFF (GPIO 15)", 15);
-
-        HorizontalLayout panelsLayout = new HorizontalLayout(browserFrame, printerOnOffPanel, lightOnOffPanel);
-        panelsLayout.setSpacing(true);
-        panelsLayout.setSizeUndefined();
-        //panelsLayout.setWidth(100, Unit.PERCENTAGE);
-        //VerticalLayout v = new VerticalLayout(browserFrame, panelsLayout);
-
         videoPanel.setContent(panelsLayout);
 
-
         root.addComponentsAndExpand(videoPanel);
-
     }
 
     private void setFooter() {
