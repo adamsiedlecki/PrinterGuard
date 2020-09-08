@@ -1,10 +1,10 @@
 package pl.adamsiedlecki.PrinterGuard.ui;
 
 
-import com.github.sarxos.webcam.Webcam;
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.server.*;
+import com.vaadin.server.ExternalResource;
+import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
@@ -13,26 +13,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
 import pl.adamsiedlecki.PrinterGuard.hardware.RaspberryGPIO;
-import pl.adamsiedlecki.PrinterGuard.tests.MakePhoto;
-import pl.adamsiedlecki.PrinterGuard.tests.MakePhotos;
-import pl.adamsiedlecki.PrinterGuard.tests.SavePicture;
+import pl.adamsiedlecki.PrinterGuard.http.InfoGetter;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.net.MalformedURLException;
-import java.net.ServerSocket;
-import java.net.URL;
-import java.util.concurrent.atomic.AtomicReference;
+import java.io.File;
 
-@SpringUI(path="/")
+@SpringUI(path = "/")
 @StyleSheet({"https://fonts.googleapis.com/css?family=Ubuntu&display=swap"})
 @Scope("prototype")
 public class PublicUI extends UI {
 
     private VerticalLayout root;
-    private volatile int num = 0;
-    private Environment env;
+    private final int num = 0;
+    private final Environment env;
     private final RaspberryGPIO raspberryGPIO = new RaspberryGPIO();
 
     @Autowired
@@ -63,12 +55,14 @@ public class PublicUI extends UI {
     private void initButtons() {
         File lastFile = new File("frames/img0.jpg");
 
+        InfoGetter infoGetter = new InfoGetter();
+        String externalAddress = infoGetter.getExternalIpAddress();
 
-        String address = "http://"+env.getProperty("camera.address")+":"+env.getProperty("camera.port");
+        String address = "http://" + externalAddress + ":" + env.getProperty("camera.port");
         BrowserFrame browserFrame = new BrowserFrame();
         browserFrame.setSizeUndefined();
         browserFrame.setAlternateText(env.getProperty("camera.alternative.text"));
-        browserFrame.setWidth(Float.parseFloat(env.getProperty("camera.width","480")), Unit.PIXELS);
+        browserFrame.setWidth(Float.parseFloat(env.getProperty("camera.width", "480")), Unit.PIXELS);
         browserFrame.setHeight(Float.parseFloat(env.getProperty("camera.height", "400")), Unit.PIXELS);
         browserFrame.setSource(new ExternalResource(address));
 
