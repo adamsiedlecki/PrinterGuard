@@ -1,7 +1,7 @@
 # PrinterGuard
 PrinterGuard project for monitoring 3d printer and performing remote actions with it.
 
-ENG
+<h2>ENG</h2>
 
 1. You need to set fixed, static IP address on RaspberryPi (ipv4 is the best choice, but depends on your network).
 
@@ -24,7 +24,7 @@ ENG
 6. You can use app by going to external router IP and port 11110, e.g 80.20.210.20:11110
 
 
-PL
+<h2>PL</h2>
 1. Na raspberry trzeba ustawić stały adres IP (najlepiej ipv4).
 
 2. Prawdopodobnie na raspberry nie ma Javy w wersji 11, dlatego w terminalu wykonujemy polecenie:
