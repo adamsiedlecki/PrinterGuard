@@ -20,7 +20,6 @@ import pl.adamsiedlecki.PrinterGuard.ui.components.CameraBrowserFrame;
 public class PublicUI extends UI {
 
     private VerticalLayout root;
-    private final int num = 0;
     private final Environment env;
     private final RaspberryGPIO raspberryGPIO = new RaspberryGPIO();
     private final CameraBrowserFrame cameraBrowserFrame;
