@@ -11,13 +11,13 @@ PrinterGuard project for monitoring 3d printer and performing remote actions wit
 
 	If that command doesn't work, you need to find another one.
 	
-3. RaspberryPi needs to have gpio command line tool. It may be default installed, but if no: 
+3. RaspberryPi needs to have gpio command line tool. It may be installed by default, but if no: 
     
     sudo apt-get install wiringpi
 	
 4. You can run my app using command java -jar PrinterGuard.jar, while you are in right directory (on RaspberryPi).
 
-5. If you want to have access outside your local network, you need to add new settings (NAT) on your router :
+5. If you want to have access outside of your local network, you need to add new settings (NAT) on your router :
 	- external port 11111 to raspberry IP, internal port 8080 (camera)
 	- external port 11110 to raspberry IP, internal port 80 (application)
 
