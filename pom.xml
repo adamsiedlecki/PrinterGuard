@@ -15,7 +15,7 @@
 	<description>PrinterGuard project for monitoring 3d printer and performing remote actions with it.</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 		<vaadin.version>8.7.1</vaadin.version>
 	</properties>
 
@@ -23,8 +23,15 @@
 		<dependency>
 			<groupId>com.github.sarxos</groupId>
 			<artifactId>webcam-capture</artifactId>
-			<version>0.3.9</version>
+			<version>0.3.11</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.github.sarxos</groupId>
+			<artifactId>webcam-capture-driver-v4l4j</artifactId>
+			<version>0.3.11</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>

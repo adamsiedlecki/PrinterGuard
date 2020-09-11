@@ -13,6 +13,9 @@ import java.util.List;
 
 public class InfoGetter {
 
+    /*
+        Returns external router address or localhost address, if ping to API is not successful
+    */
     public String getExternalIpAddress() {
 
         String apiAddress = "https://api.myip.com";

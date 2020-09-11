@@ -1,4 +1,4 @@
-package pl.adamsiedlecki.PrinterGuard;
+package pl.adamsiedlecki.PrinterGuard.tools;
 
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamEvent;

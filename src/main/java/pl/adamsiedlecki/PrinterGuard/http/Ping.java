@@ -19,6 +19,7 @@ public class Ping {
 
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
 
         return isActive;

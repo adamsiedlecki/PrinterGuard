@@ -4,7 +4,7 @@ import com.github.sarxos.webcam.Webcam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-import pl.adamsiedlecki.PrinterGuard.MyWebcamStreamer;
+import pl.adamsiedlecki.PrinterGuard.tools.MyWebcamStreamer;
 
 import java.awt.*;
 

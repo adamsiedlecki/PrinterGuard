@@ -16,8 +16,8 @@ public class PrinterGuardApplication {
 
 		Camera camera = ctx.getBean(Camera.class);
 		camera.start();
-		camera.stop();
-		camera.restart();
+//		camera.stop();
+//		camera.restart();
 
 	}
 
