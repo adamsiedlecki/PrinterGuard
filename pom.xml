@@ -20,17 +20,57 @@
 	</properties>
 
 	<dependencies>
+
 		<dependency>
-			<groupId>com.github.sarxos</groupId>
-			<artifactId>webcam-capture</artifactId>
-			<version>0.3.11</version>
+			<groupId>com.nativelibs4java</groupId>
+			<artifactId>bridj</artifactId>
+			<version>0.7.0</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>com.github.sarxos</groupId>
-			<artifactId>webcam-capture-driver-v4l4j</artifactId>
-			<version>0.3.11</version>
+			<artifactId>webcam-capture</artifactId>
+			<version>0.3.10</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.nativelibs4java</groupId>
+					<artifactId>bridj</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+		<!--		<dependency>-->
+		<!--			<groupId>com.github.sarxos</groupId>-->
+		<!--			<artifactId>webcam-capture</artifactId>-->
+		<!--			<version>0.3.11</version>-->
+		<!--			<scope>system</scope>-->
+		<!--			<systemPath>${project.basedir}/libs/webcam-capture-new.jar</systemPath>-->
+		<!--		</dependency>-->
+
+		<!--		<dependency>-->
+		<!--			<groupId>ch.qos.logback</groupId>-->
+		<!--			<artifactId>logback-core</artifactId>-->
+		<!--			<version>1.1.1</version>-->
+		<!--		</dependency>-->
+		<!--		<dependency>-->
+		<!--			<groupId>ch.qos.logback</groupId>-->
+		<!--			<artifactId>logback-classic</artifactId>-->
+		<!--			<version>1.1.1</version>-->
+		<!--			<scope>test</scope>-->
+		<!--		</dependency>-->
+
+
+		<!--		<dependency>-->
+		<!--			<groupId>com.github.sarxos</groupId>-->
+		<!--			<artifactId>webcam-capture</artifactId>-->
+		<!--			<version>0.3.11</version>-->
+		<!--		</dependency>-->
+
+		<!--		<dependency>-->
+		<!--			<groupId>com.github.sarxos</groupId>-->
+		<!--			<artifactId>webcam-capture-driver-v4l4j</artifactId>-->
+		<!--			<version>0.3.11</version>-->
+		<!--		</dependency>-->
 
 
 		<dependency>
@@ -70,6 +110,11 @@
 				<version>${vaadin.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${logback.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

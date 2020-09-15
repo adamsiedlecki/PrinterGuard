@@ -18,7 +18,7 @@ public class Ping {
             System.out.println("Address: " + address + " is " + state);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return false;
         }
 
